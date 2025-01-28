@@ -20,9 +20,9 @@ jobs:
         with:
           go-version: 1.23  
 
-      - name: Configure Git for HTTPS
-        run: |
-          git config --global url."https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_APP_PASSWORD }}@bitbucket.org/".insteadOf "https://bitbucket.org/"
+#      - name: Configure Git for HTTPS
+#        run: |
+#          git config --global url."https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_APP_PASSWORD }}@bitbucket.org/".insteadOf "https://bitbucket.org/"
 
       - name: Go Build and Test
         run: |
@@ -37,9 +37,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Configure Git for HTTPS
-        run: |
-          git config --global url."https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_APP_PASSWORD }}@bitbucket.org/".insteadOf "https://bitbucket.org/"
+#      - name: Configure Git for HTTPS
+#        run: |
+#          git config --global url."https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_APP_PASSWORD }}@bitbucket.org/".insteadOf "https://bitbucket.org/"
 
       - name: Qwiet.AI NextGen Scan
         run: |
