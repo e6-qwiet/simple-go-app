@@ -41,8 +41,8 @@ jobs:
 
       - name: Configure Git for HTTPS
         run: |
-          git config --global url."https://${{ secrets.BITBUCKET_PAT }}:x-oauth-basic@github@bitbucket.org/".insteadOf "https://bitbucket.org/"
-          git clone https://{{ secrets.BITBUCKET_PAT}}@bitbucket.org/ericroku/sessions/sessions.git
+          git config --global url."https://${{ secrets.BITBUCKET_PAT }}:x-oauth-basic@bitbucket.org/".insteadOf "https://bitbucket.org/"
+          git clone https://bitbucket.org/ericroku/sessions/sessions.git
 #          git config --global url."https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_APP_PASSWORD }}@bitbucket.org/".insteadOf "https://bitbucket.org/"
 
       - name: Qwiet.AI NextGen Scan
