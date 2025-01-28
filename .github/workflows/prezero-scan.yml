@@ -9,45 +9,45 @@ on:
       - main
 
 jobs:
-  go-build-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      
-      - name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: 1.23  
-
-#      - name: Configure Git for HTTPS
-#        run: |
-#          git config --global url."https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_APP_PASSWORD }}@bitbucket.org/".insteadOf "https://bitbucket.org/"
-
-      - name: Go Build and Test
-        run: |
-          go version
-          go vet -v
-          go test -v
-          go mod graph
-          go build ./...
-
-#  qwiet-nextgen-scan:
+#  go-build-test:
 #    runs-on: ubuntu-latest
-#    container: shiftleft/core:latest
 #    steps:
 #      - name: Checkout Code
 #        uses: actions/checkout@v3
+      
+#      - name: Set up Go
+#        uses: actions/setup-go@v4
+#        with:
+#          go-version: 1.23  
 
 #      - name: Configure Git for HTTPS
 #        run: |
 #          git config --global url."https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_APP_PASSWORD }}@bitbucket.org/".insteadOf "https://bitbucket.org/"
 
- #     - name: Qwiet.AI NextGen Scan
- #       run: |
- #         curl https://cdn.shiftleft.io/download/sl > /usr/local/bin/sl && chmod a+rx /usr/local/bin/sl
- #         echo ${{ github.sha }} ${{ github.ref_name }} ${{ github.repository }}
- #         sl analyze --version-id "${{ github.sha }}" --app "${GITHUB_REPOSITORY_OWNER}_${GITHUB_REPOSITORY#*/}" --verbose --strict .
+#      - name: Go Build and Test
+#        run: |
+#          go version
+#          go vet -v
+#          go test -v
+#          go mod graph
+#          go build ./...
 
- #       env:
- #         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
+  qwiet-nextgen-scan:
+    runs-on: ubuntu-latest
+    container: shiftleft/core:latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Configure Git for HTTPS
+        run: |
+          git config --global url."https://${{ secrets.BITBUCKET_USERNAME }}:${{ secrets.BITBUCKET_APP_PASSWORD }}@bitbucket.org/".insteadOf "https://bitbucket.org/"
+
+      - name: Qwiet.AI NextGen Scan
+        run: |
+          curl https://cdn.shiftleft.io/download/sl > /usr/local/bin/sl && chmod a+rx /usr/local/bin/sl
+          echo ${{ github.sha }} ${{ github.ref_name }} ${{ github.repository }}
+          sl analyze --version-id "${{ github.sha }}" --app "${GITHUB_REPOSITORY_OWNER}_${GITHUB_REPOSITORY#*/}" --verbose --strict .
+
+        env:
+          SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
