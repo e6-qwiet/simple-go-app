@@ -30,6 +30,7 @@ jobs:
           go vet -v
           go test -v
           go mod graph
+          go build ./...
 
 #  qwiet-nextgen-scan:
 #    runs-on: ubuntu-latest
